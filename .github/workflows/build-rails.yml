@@ -38,10 +38,8 @@ jobs:
         run: |
           yarn install --pure-lockfile
 
-      - name: Run linters
-        run: |
-          bin/rubocop --parallel
-          
+      
+
       - name: Run security checks
         run: |
           bin/bundler-audit --update
