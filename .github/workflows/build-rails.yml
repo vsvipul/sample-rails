@@ -11,7 +11,9 @@ jobs:
           POSTGRES_USER: myapp
           POSTGRES_DB: sample_rails_test
           POSTGRES_PASSWORD: "password1"
-        ports: ["5432:5432"]
+        ports:
+        # will assign a random free host port
+        - 5432/tcp
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
