@@ -41,6 +41,10 @@ jobs:
         run: |
           yarn install --pure-lockfile
 
+      - name: Run linters
+        continue-on-error: true
+        run: |
+          bin/rubocop --parallel
 
       - name: Run security checks
         run: |
