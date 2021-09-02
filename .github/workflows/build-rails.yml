@@ -12,7 +12,7 @@ jobs:
           POSTGRES_DB: sample_rails_test
           POSTGRES_PASSWORD: "password1"
         ports:
-        - 5432:5432
+        - 5432/tcp
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
@@ -51,10 +51,9 @@ jobs:
           pg_isready -d sample_rails_test -h localhost -p 5432 -U myapp
       - name: Setup test database
         env:
-          RAILS_ENV: test
           PGHOST: localhost
           PGUSER: myapp
-          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          PGPORT: 5432
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
