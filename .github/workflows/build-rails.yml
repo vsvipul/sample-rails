@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:13
+        image: postgres:10.8
         env:
           POSTGRES_USER: myapp
           POSTGRES_DB: sample_rails_test
@@ -46,7 +46,7 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: postgres
+          PGHOST: localhost
           PGUSER: myapp
         run: |
           gem install bundler
