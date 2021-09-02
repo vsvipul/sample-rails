@@ -38,7 +38,6 @@ jobs:
         run: |
           yarn install --pure-lockfile
 
-      
 
       - name: Run security checks
         run: |
@@ -50,6 +49,8 @@ jobs:
           PGHOST: localhost
           PGUSER: myapp
         run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
           bin/rails db:setup
 
       - name: Run tests
