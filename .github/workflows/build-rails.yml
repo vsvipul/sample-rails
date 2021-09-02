@@ -12,8 +12,7 @@ jobs:
           POSTGRES_DB: sample_rails_test
           POSTGRES_PASSWORD: "password1"
         ports:
-        # will assign a random free host port
-        - 5432/tcp
+        - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
@@ -47,6 +46,9 @@ jobs:
         run: |
           bin/bundler-audit --update
           bin/brakeman -q -w2
+      - name: debug
+        run: |
+          echo ${{ job.services.postgres.ports[5432] }}
       - name: Setup test database
         env:
           RAILS_ENV: test
