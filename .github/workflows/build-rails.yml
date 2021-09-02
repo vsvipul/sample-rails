@@ -46,7 +46,7 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
+          PGHOST: postgres
           PGUSER: myapp
         run: |
           gem install bundler
