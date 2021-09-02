@@ -48,7 +48,7 @@ jobs:
           bin/brakeman -q -w2
       - name: debug
         run: |
-          echo ${{ job.services.postgres.ports[5432] }}
+          pg_isready -d sample_rails_test -h localhost -p 5432 -U myapp
       - name: Setup test database
         env:
           RAILS_ENV: test
