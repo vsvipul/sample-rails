@@ -53,7 +53,7 @@ jobs:
           POSTGRES_DB: ${{ env.POSTGRES_DB }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
         ports:
-        - 5432:${{ env.POSTGRES_PORT }}
+        - 5432/tcp
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
@@ -86,7 +86,7 @@ jobs:
         env:
           PGHOST: ${{ env.POSTGRES_HOST }}
           PGUSER: ${{ env.POSTGRES_USER }}
-          PGPORT: ${{ env.POSTGRES_PORT }}
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
@@ -96,5 +96,5 @@ jobs:
         env:
           PGHOST: ${{ env.POSTGRES_HOST }}
           PGUSER: ${{ env.POSTGRES_USER }}
-          PGPORT: ${{ env.POSTGRES_PORT }}
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
         run: bundle exec rake test  
