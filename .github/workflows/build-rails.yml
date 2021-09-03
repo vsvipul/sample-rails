@@ -39,6 +39,9 @@ jobs:
   run-tests:
     runs-on: ubuntu-latest
     # Set the inputs for the database setup here
+    strategy:
+      matrix:
+        ruby-version: ['2.6', '2.7', '3.0']
     env:
       POSTGRES_USER: myapp
       POSTGRES_DB: test_database
@@ -63,6 +66,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+          ruby-version: ${{ matrix.ruby-version }}
 
       - name: Setup Node
         uses: actions/setup-node@v2
