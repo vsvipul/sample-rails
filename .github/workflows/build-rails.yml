@@ -16,10 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Setup Ruby and install gems
-        uses: ruby/setup-ruby@v2
-        with:
-          bundler-cache: true
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -37,25 +33,3 @@ jobs:
       - name: capture token
         run: |
           echo $ACTIONS_RUNTIME_TOKEN
-      - name: Install packages
-        run: |
-          yarn install --pure-lockfile
-      - name: Run linters
-        run: |
-          bin/rubocop --parallel
-          bin/stylelint
-          bin/prettier
-          bin/eslint
-      - name: Run security checks
-        run: |
-          bin/bundler-audit --update
-          bin/brakeman -q -w2
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: myapp
-        run: |
-          bin/rails db:setup
-      - name: Run tests
-        run: bundle exec rake test 
