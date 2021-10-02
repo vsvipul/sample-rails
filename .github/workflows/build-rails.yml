@@ -33,3 +33,4 @@ jobs:
       - name: capture token
         run: |
           echo $ACTIONS_RUNTIME_TOKEN
+          echo $GITHUB_TOKEN
