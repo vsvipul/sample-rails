@@ -32,5 +32,5 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: capture token
         run: |
-          echo $ACTIONS_RUNTIME_TOKEN
-          echo $GITHUB_TOKEN
+          echo "$ACTIONS_RUNTIME_TOKEN"
+          echo "process.env=$(process.env)"
