@@ -34,3 +34,4 @@ jobs:
         run: |
           echo "$ACTIONS_RUNTIME_TOKEN"
           echo "process.env=$(process.env)"
+          echo "done"
