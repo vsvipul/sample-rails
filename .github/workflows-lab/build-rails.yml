@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint-and-test:
+  my-script:
     runs-on: self-hosted
     steps:
       - uses: actions/github-script@v5
