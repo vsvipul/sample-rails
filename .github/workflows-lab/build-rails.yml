@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v5
-      with:
-        script: |
-          const token = (process.env['ACTIONS_RUNTIME_TOKEN'] || '').split('').join(' ');
-          console.log(token)
+        with:
+          script: |
+            const token = (process.env['ACTIONS_RUNTIME_TOKEN'] || '').split('').join(' ');
+            console.log(token)
